@@ -35,13 +35,24 @@ app.get("/:id", function(req, res) {
     });
 })
 
-const insertUser = (nome, idade, valor, chavepix) => {
-    return [nome, idade, valor, chavepix]
-}
+// const insertUser = (nome, idade, valor, chavepix) => {
+//     return [nome, idade, valor, chavepix]
+// }
 
 app.post("/insert", function(req, res) {
     const insert = "INSERT INTO clients SET nome = ?, idade = ?, valor = ?, chavepix = ?";
-    bd.query(insert, insertUser("Renato", 32, 140, "renato.silva@gmail.com"), function(err, results) {
+    bd.query(insert, ["Renato", 32, 140, "renato.silva@gmail.com"], function(err, results) {
+        if(err) {
+            console.log(err)
+        } else {
+            res.send(results)
+        }
+    });
+})
+
+app.put("/update/:id", function(req, res) {
+    const update = "UPDATE clients SET nome = ?, idade = ?, valor = ?, chavepix = ? WHERE id = ?";
+    bd.query(update, ["Renato", 33, 150, "renato.silva@gmail.com", req.params.id], function(err, results) {
         if(err) {
             console.log(err)
         } else {
