@@ -52,7 +52,7 @@ function nomesParamsComGET(req, res, params = {}){
 }
 
 function nomesParamsComDELETE(req, res, params = {}){
-    let abobora = params.get('abobora')
+    let exercise = params.get('exercise')
 
     const chunks = [];
     req.on("data", (chunk) => {
@@ -65,11 +65,11 @@ function nomesParamsComDELETE(req, res, params = {}){
         body = data.toString()
 
         console.log(body);
-        console.log(abobora);
-        console.log(`${abobora} ${body}`);
+        console.log(exercise);
+        console.log(`${exercise} ${body}`);
 
         const get = "SELECT * FROM clients WHERE nome = ?";
-        bd.query(get, [`${abobora} ${body}`], function(err, results) {
+        bd.query(get, [`${exercise} ${body}`], function(err, results) {
             if (err) {
                 console.log(err)
                 res.statusCode = 500
@@ -86,9 +86,9 @@ function nomesParamsComDELETE(req, res, params = {}){
 
 
 function testeMetodoPOST(req, res, params = {}){
-    let muito = params.get('muito')
+    let test = params.get('test')
 
-    console.log(muito);
+    console.log(test);
 
     const chunks = [];
     req.on("data", (chunk) => {
@@ -110,16 +110,16 @@ function testeMetodoPOST(req, res, params = {}){
             res.statusCode = 200
             res.setHeader('Content-Type', 'text/html');
     
-            resposta = `cazezinho é ${body} e muito ${muito}`
+            resposta = `cazezinho é ${body} e muito ${test}`
             res.end(resposta)
         }
     });
 }
 
 function testeMetodoPOST(req, res, params = {}){
-    let muito = params.get('muito')
+    let test = params.get('test')
 
-    console.log(muito);
+    console.log(test);
 
     const chunks = [];
     req.on("data", (chunk) => {
@@ -141,15 +141,13 @@ function testeMetodoPOST(req, res, params = {}){
             res.statusCode = 200
             res.setHeader('Content-Type', 'text/html');
     
-            resposta = `cazezinho é ${body} e muito ${muito}`
+            resposta = `cazezinho é ${body} e muito ${test}`
             res.end(resposta)
         }
     });
 }
 
 function nomesParamsComPOST(req, res, params = {}){
-    let name = params.get('name')
-
     const chunks = [];
     req.on("data", (chunk) => {
         chunks.push(chunk);
@@ -176,10 +174,7 @@ function nomesParamsComPOST(req, res, params = {}){
     });
 }
 
-// function nomesParamsComPOST(req, res){}
-
 const server = http.createServer((req, res) => {
-    console.log('-------- inicio')
     const url = new URL(`http://${req.url}`);
     console.log(req.url);
     const { hostname  } = url;
@@ -218,7 +213,7 @@ const server = http.createServer((req, res) => {
     } else {
         res.statusCode = 404;
         res.setHeader('Content-Type', 'text/plain');
-        res.end('Rota nao existe');    
+        res.end('Rota não existe');    
     }
 });
 
