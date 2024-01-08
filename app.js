@@ -35,6 +35,21 @@ app.get("/:id", function(req, res) {
     });
 })
 
+const insertUser = (nome, idade, valor, chavepix) => {
+    return [nome, idade, valor, chavepix]
+}
+
+app.post("/insert", function(req, res) {
+    const insert = "INSERT INTO clients SET nome = ?, idade = ?, valor = ?, chavepix = ?";
+    bd.query(insert, insertUser("Renato", 32, 140, "renato.silva@gmail.com"), function(err, results) {
+        if(err) {
+            console.log(err)
+        } else {
+            res.send(results)
+        }
+    });
+})
+
 app.listen(8080, function() {
     console.log("O servidor está rodando...");
 });
