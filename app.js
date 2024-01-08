@@ -61,6 +61,17 @@ app.put("/update/:id", function(req, res) {
     });
 })
 
+app.delete("/del/:id", function(req, res) {
+    const del = "DELETE FROM clients WHERE id = ?";
+    bd.query(del, [req.params.id], function(err, results) {
+        if(err) {
+            console.log(err)
+        } else {
+            res.send(results)
+        }
+    });
+})
+
 app.listen(8080, function() {
     console.log("O servidor está rodando...");
 });
