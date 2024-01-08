@@ -56,11 +56,12 @@ app.post("/insert", function(req, res) {
 
 app.put("/update/:id", function(req, res) {
     const update = "UPDATE clients SET nome = ?, idade = ?, valor = ?, chavepix = ? WHERE id = ?";
-    bd.query(update, ["Renato", 33, 150, "renato.silva@gmail.com", req.params.id], function(err, results) {
+    const body = req.body;
+    bd.query(update, [body.nome, body.idade, body.valor, body.chavepix, req.params.id], function(err, results) {
         if(err) {
             console.log(err)
         } else {
-            res.send(results)
+            res.send("Usuário atualizado!")
         }
     });
 })
@@ -71,7 +72,7 @@ app.delete("/del/:id", function(req, res) {
         if(err) {
             console.log(err)
         } else {
-            res.send(results)
+            res.send("Usuário deletado!")
         }
     });
 })
