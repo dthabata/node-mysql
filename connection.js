@@ -14,6 +14,15 @@ connection.connect(function(err){
     } else {
         console.log("Conectado!")
     }
+
+    connection.query("SELECT * FROM clients", (err, results, fields) => {
+        if (err) {
+            console.log(err)
+        } else {
+            console.log(results);
+            console.log(fields);
+        }
+    })
 });
 
 module.exports = connection;
