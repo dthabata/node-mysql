@@ -1,6 +1,9 @@
 const bd = require("./connection");
 const express = require("express");
 const app = express();
+const body = require("body-parser");
+
+app.use(body.json());
 
 app.get("/", function(req, res) {
     const select = "SELECT * FROM clients";
@@ -41,11 +44,12 @@ app.get("/:id", function(req, res) {
 
 app.post("/insert", function(req, res) {
     const insert = "INSERT INTO clients SET nome = ?, idade = ?, valor = ?, chavepix = ?";
-    bd.query(insert, ["Renato", 32, 140, "renato.silva@gmail.com"], function(err, results) {
+    const body  = req.body;
+    bd.query(insert, [body.nome, body.idade, body.valor, body.chavepix], function(err, results) {
         if(err) {
             console.log(err)
         } else {
-            res.send(results)
+            res.send("Usuário inserido!")
         }
     });
 })
