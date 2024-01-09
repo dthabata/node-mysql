@@ -12,8 +12,7 @@ function helloWorld(req, res){
 function favicon(req, res){
     res.statusCode = 301
     res.setHeader('location', 'https://en.wikipedia.org/static/favicon/wikipedia.ico');
-    res.end();  
-    
+    res.end();
 }
 
 function nomes(req, res){
@@ -102,7 +101,6 @@ function testeMetodoPOST(req, res, params = {}){
         
         console.log(body.split('').length);
 
-
         if (body.split('').length > 20) {
             res.statusCode = 500
             res.end()
@@ -132,7 +130,6 @@ function testeMetodoPOST(req, res, params = {}){
         body = data.toString()
         
         console.log(body.split('').length);
-
 
         if (body.split('').length > 20) {
             res.statusCode = 500
@@ -196,7 +193,6 @@ const server = http.createServer((req, res) => {
     } else if (hostname == 'nomesparamscomget' && req.method == "GET") {
 
         nomesParamsComGET(req, res, searchParams);
-
 
     } else if (hostname == 'nomesparamscompost' && req.method == "POST") {
 
