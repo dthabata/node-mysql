@@ -1,4 +1,4 @@
-# Udemy Project File 01
+# Udemy Project CRUD
 
 ## Overview
 This repo contains what I've developed while doing a course on [Udemy](https://www.udemy.com/).
