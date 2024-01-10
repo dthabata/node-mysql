@@ -1,7 +1,6 @@
 const http = require('node:http');
 const { URL } = require('node:url');
 const bd = require("./connection");
-const querystring = require('node:querystring'); 
 
 function helloWorld(req, res){
     res.statusCode = 200;
